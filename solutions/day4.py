@@ -25,7 +25,7 @@ def is_height(x):
     if metric == "cm":
         return in_range(num, 150, 193)
 
-    return False;
+    return False
 
 def is_passport(x):
     #print("Checking passport Id for " + t)
@@ -39,11 +39,11 @@ def is_color(x):
 
 valid_entries = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"] #ignore cid
 def validate(passportDict):
-    print("Size: " + str(len(passportDict)))
+    #print("Size: " + str(len(passportDict)))
     for e in valid_entries:
-        print(e + ":" + str(e not in passportDict));
+        #print(e + ":" + str(e not in passportDict))
         if e not in passportDict:
-            return False;
+            return False
     return True
 
 validators = {"byr": lambda x: in_range(x, 1920, 2002),
@@ -56,11 +56,11 @@ validators = {"byr": lambda x: in_range(x, 1920, 2002),
 def validation(passportDict):
     for k, v in validators.items():
         if k not in passportDict:
-            print("Missing " + k)
+            #print("Missing " + k)
             return False
         else:
             if not v(passportDict[k]):
-                print("Invalid " + k + ": " + passportDict[k])
+                #print("Invalid " + k + ": " + passportDict[k])
                 return False
     return True
 
@@ -72,7 +72,7 @@ curr = {}
 
 def run_validation(curr):
     #print(curr);
-    passports.append(curr);
+    passports.append(curr)
     if (validate(curr)):
         global valid_count
         valid_count += 1
@@ -82,20 +82,20 @@ def run_validation(curr):
 
 
 for line in fileinput.input(files=(filename)):
-    line_data = line.strip();
+    line_data = line.strip()
     if (len(line_data) == 0):
         run_validation(curr)
         curr = {}
     else:
-        tokens = line_data.split();
+        tokens = line_data.split()
         for t in tokens:
             entry = t.split(":")
             curr[entry[0]] = entry[1]
 
 # Last line is not a empty line, so do the validation one more time. 
 if (len(curr) > 0):
-    run_validation(curr);
+    run_validation(curr)
     curr = {}
 print(len(passports))
-print(valid_count)
-print(tough_valid_count)
+print("Part 1: " + str(valid_count))
+print("Part 2: " + str(tough_valid_count))

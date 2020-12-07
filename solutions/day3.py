@@ -1,5 +1,5 @@
 import fileinput
-l = [];
+l = []
 
 slopes = [(1,1), (3,1), (5, 1), (7,1), (1, 2)]
 
@@ -11,31 +11,32 @@ def check_slope_for_trees(x, y):
             continue
         pattern_size = len(line)
         #print(line)
-        i = (sled_pos[0] % (pattern_size));
+        i = (sled_pos[0] % (pattern_size))
         #print(pattern_size, sled_pos[0], i)
         
-        tree = line[i] == "#";
+        tree = line[i] == "#"
         if tree:
-            tree_count = tree_count + 1;
+            tree_count = tree_count + 1
             line = line[:i] + 'X' + line[i+1:]
         else:
             line = line[:i] + 'O' + line[i+1:]
         #print(line)
-        sled_pos = (sled_pos[0] + x, sled_pos[1] + y);
-    return tree_count;
+        sled_pos = (sled_pos[0] + x, sled_pos[1] + y)
+    return tree_count
 
 sled_pos = (0, 0)
 sled_x = 3
 sled_y = 1
-tree_count = 0;
+tree_count = 0
 for line in fileinput.input(files=('inputs/day3.txt')):
     l.append(line.strip())
 
 count = 1
 for slope in slopes:
-    tc = check_slope_for_trees(slope[0], slope[1]);
-    print(tc)
+    tc = check_slope_for_trees(slope[0], slope[1])
+    #print(tc)
     count = count * tc
 
 # check_slope_for_trees(7, 1);
-print(count)
+print("Part 1: " + str(check_slope_for_trees(slopes[1][0], slopes[1][1])))
+print("Part 2: " + str(count))

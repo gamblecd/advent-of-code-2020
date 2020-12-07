@@ -39,9 +39,9 @@ all_group_counts.append(everyone(group, group_size))
 group = [ 0 for x in range(26)]
 group_size = 0
 
-print(any_group_counts)
-print(all_group_counts)
+#print(any_group_counts)
+#print(all_group_counts)
 anytotal = functools.reduce(lambda v,e: v + e, any_group_counts, 0)
 alltotal = functools.reduce(lambda v,e: v + e, all_group_counts, 0)
-print(anytotal)
-print(alltotal)
+print("Part 1: " + str(anytotal))
+print("Part 2: " + str(alltotal))

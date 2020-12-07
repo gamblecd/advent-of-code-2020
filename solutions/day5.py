@@ -47,5 +47,5 @@ for index, s in enumerate(seats):
         #print(s)
         break
 
-print(maxseat)
-print(myseat)
+print("Part 1: " + str(maxseat))
+print("Part 2: " + str(myseat))
