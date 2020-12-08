@@ -44,18 +44,18 @@ print("Part 1: " + str(acc))
 
 
 def swap(i):
-    print("Swapping index: " + str(i))
-    print(ops[i])
+    #print("Swapping index: " + str(i))
+    #print(ops[i])
     op = ops[i];
     if (op[0] == "nop"):
         ops[i] = ("jmp", op[1])
     elif op[0] == "jmp":
         ops[i] = ("nop", op[1])
-    print("To")
-    print(ops[i])
+    #print("To")
+    #print(ops[i])
 
 def pop_until_swappable():
-    print(indices)
+    #print(indices)
     i = indices.pop();
     currOp = ops[i[0]]
     op = currOp[0]
