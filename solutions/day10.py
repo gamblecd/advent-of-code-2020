@@ -2,7 +2,7 @@ import fileinput, bisect
 import functools
 filename = "inputs/day10.txt"
 
-adapters =[]
+adapters = []
 for line in fileinput.input(files=(filename)):
     line_data = line.strip()
     j = int(line_data)
@@ -63,12 +63,12 @@ def find_paths(s, i, memo):
             r = find_paths(s, i +1, memo) + find_paths(s, i+2, memo) + find_paths(s, i+3,memo)
         memo[i] = r
     return r
-print(adapters)
+#print(adapters)
 count_separation(adapters)
 print("Part 1: " + str(counts[1] * counts[3]))
 
 paths = count_total_possible_separations(adapters)
 memo = [0 for x in range(len(paths))]
-print(paths)
-print(find_paths(paths,0, memo))
-print(memo)
+#print(paths)
+print("Part 2: " + str(find_paths(paths,0, memo)))
+#print(memo)
