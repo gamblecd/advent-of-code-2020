@@ -16,7 +16,7 @@ def build_seats(file, arr=[]):
             arr.append(l)
     return arr
 
-beginning_seats = build_seats(filename, []);
+beginning_seats = build_seats(filename, [])
 ex1 = build_seats("inputs/day11p2_ex1.txt", [])
 ex2 = build_seats("inputs/day11p2_ex2.txt", [])
 ex3 = build_seats("inputs/day11p2_ex3.txt", [])
