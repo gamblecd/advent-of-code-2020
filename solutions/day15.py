@@ -1,47 +1,36 @@
-import fileinput, bisect
-import functools
+import fileinput
 filename = "inputs/day15_ex.txt"
 
-def init_game(line):
-    arr = list(map(int, line.split(",")))
-    return arr
-
-def update_indices(indices, number, new_index):
-    index = indices.get(number)
-    if index is None:
-        indices[number] = [new_index]
-    else:
-        indices[number] = [new_index, index[0]]
-
-def play_turn(arr, number, indices):
+def play_turn(turn, number, indices):
     #print(arr, number)
     index = indices[number]
-    z = len(arr)
+    z = turn - 1
     x = 0
-    if len(index) == 1:
-        x = 0
-    else:
-        last, s_last =  index
-        x = last - s_last
-    update_indices(indices, x, z)
-    arr.append(x)
+    if not index is None:
+        x = z - index
+    indices[number] = z
+    return x
 
 for line in fileinput.input(files=(filename)):
     line_data = line.strip()
-    arr = init_game(line_data)
-    indices = {}
-    for i, x in enumerate(arr):
-        indices[x] = [i]
     t = 30000000
-    init_turns = len(arr)
+    indices = [None for x in range(t)]
+    l = 0
+    last = 0
+    for i, x in enumerate(list(map(int, line.split(",")))):
+        indices[x] = i
+        last = x
+        l += 1
+    init_turns = l 
     turn_diff = init_turns + 1
     #print(arr)
     for x in range(t-init_turns):
-        play_turn(arr, arr[-1], indices)
+        last = play_turn(x + init_turns, last, indices)
+        #print(last)
         if x+turn_diff == 2020:
-            print("Part 1: ", arr[-1])
+            print("Part 1: ", last)
         #if (arr[-1] == 0):
             #print(x+(len(arr)))
     #print(arr)
     print()
-    print("Part 2: ", arr[-1])
+    print("Part 2: ", last)
